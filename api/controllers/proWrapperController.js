@@ -28,6 +28,7 @@ var wrapper = {
                     if (error) {
                         reject(error)
                     }
+                    
                     if(!body.resonseObj){
                       console.log('eeeeeeeeeeeeeeeeeee',config.url)
                     }
