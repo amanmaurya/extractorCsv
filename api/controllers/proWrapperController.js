@@ -5,7 +5,7 @@ var jsonexport = require('jsonexport');
 var format = require('date-format')
 var csv = require("csvtojson");
 
-
+var date='2018-03-14';//format.asString('yyyy-MM-dd',new Date());
 
 
 var wrapper = {
@@ -28,7 +28,11 @@ var wrapper = {
                     if (error) {
                         reject(error)
                     }
+                    if(!body.resonseObj){
+                      console.log('eeeeeeeeeeeeeeeeeee',config.url)
+                    }
                     resolve(body)
+                   
                 })
             });
         };
@@ -73,8 +77,9 @@ var wrapper = {
                 getUserConfig.json = {
 
                 };
-                getUserConfig.json.startDate = req.query.startdate || "2018-06-08";
-                getUserConfig.json.endDate = req.query.enddate || "2018-06-08";
+                
+                getUserConfig.json.startDate = req.query.startdate || date;
+                getUserConfig.json.endDate = req.query.enddate || date;
                 return requestPromise(getUserConfig);
 
             })
@@ -103,8 +108,8 @@ var wrapper = {
                 getCityConfig.json = {
 
                 };
-                //getUserConfig.json.startDate=req.query.startdate || "2018-06-08";
-                //getUserConfig.json.endDate=req.query.enddate || "2018-06-08";
+                //getUserConfig.json.startDate=req.query.startdate || date;
+                //getUserConfig.json.endDate=req.query.enddate || date;
                 return requestPromise(getCityConfig);
 
             })
@@ -133,14 +138,14 @@ var wrapper = {
                 getStateConfig.json = {
 
                 };
-                //getUserConfig.json.startDate=req.query.startdate || "2018-06-08";
-                //getUserConfig.json.endDate=req.query.enddate || "2018-06-08";
+                //getUserConfig.json.startDate=req.query.startdate || date;
+                //getUserConfig.json.endDate=req.query.enddate || date;
                 return requestPromise(getStateConfig);
 
             })
 
             .then(function(data) {
-                console.log('State', data);
+                // console.log('State', data);
 
                 var csvArrayObject = {};
                 csvArrayObject.state = data;
@@ -163,14 +168,14 @@ var wrapper = {
                 getCountryConfig.json = {
 
                 };
-                //getUserConfig.json.startDate=req.query.startdate || "2018-06-08";
-                //getUserConfig.json.endDate=req.query.enddate || "2018-06-08";
+                //getUserConfig.json.startDate=req.query.startdate || date;
+                //getUserConfig.json.endDate=req.query.enddate || date;
                 return requestPromise(getCountryConfig);
 
             })
 
             .then(function(data) {
-                console.log('Country', data);
+                // console.log('Country', data);
 
                 var csvArrayObject = {};
                 csvArrayObject.country = data;
@@ -193,14 +198,14 @@ var wrapper = {
                 getStoreConfig.json = {
 
                 };
-                getStoreConfig.json.startDate = req.query.startdate || "2018-06-08";
-                getStoreConfig.json.endDate = req.query.enddate || "2018-06-08";
+                getStoreConfig.json.startDate = req.query.startdate || date;
+                getStoreConfig.json.endDate = req.query.enddate || date;
                 return requestPromise(getStoreConfig);
 
             })
 
             .then(function(data) {
-                console.log('Store', data);
+                // console.log('Store', data);
 
                 var csvArrayObject = {};
                 csvArrayObject.store = data;
@@ -223,14 +228,14 @@ var wrapper = {
                 getDistributorConfig.json = {
 
                 };
-                getDistributorConfig.json.startDate = req.query.startdate || "2018-03-16";
-                getDistributorConfig.json.endDate = req.query.enddate || "2018-03-16";
+                getDistributorConfig.json.startDate = req.query.startdate || date;
+                getDistributorConfig.json.endDate = req.query.enddate || date;
                 return requestPromise(getDistributorConfig);
 
             })
 
             .then(function(data) {
-                console.log('distributor', data);
+                // console.log('distributor', data);
 
                 var csvArrayObject = {};
                 csvArrayObject.distributor = data;
@@ -253,14 +258,14 @@ var wrapper = {
                 getAttendanceConfig.json = {
 
                 };
-                getAttendanceConfig.json.startDate = req.query.startdate || "2018-03-14";
-                getAttendanceConfig.json.endDate = req.query.enddate || "2018-03-14";
+                getAttendanceConfig.json.startDate = req.query.startdate || date;
+                getAttendanceConfig.json.endDate = req.query.enddate || date;
                 return requestPromise(getAttendanceConfig);
 
             })
 
             .then(function(data) {
-                console.log('Attendence', data);
+                // console.log('Attendence', data);
                 var csvArrayObject = {};
                 csvArrayObject.attendance = data;
                 csvArray.push(csvArrayObject);
@@ -282,32 +287,14 @@ var wrapper = {
                 getStoreDistributorConfig.json = {
 
                 };
-                getStoreDistributorConfig.json.startDate = req.query.startdate || "2018-03-14";
-                getStoreDistributorConfig.json.endDate = req.query.enddate || "2018-03-14";
+                getStoreDistributorConfig.json.startDate = req.query.startdate || date;
+                getStoreDistributorConfig.json.endDate = req.query.enddate || date;
                 return requestPromise(getStoreDistributorConfig);
 
-
-                // for(var i=0;i<csvArray.length;i++){
-
-                //   for(x in csvArray[i]){
-
-                //     jsonexport(csvArray[i][x].resonseObj,function(err, csv){
-                //           if(err) return console.log(err);
-
-                //           fs.writeFile('./'+x+'.csv', csv, function(err) {
-                //             if (err) throw err;
-                //             console.log(csv);
-                //              console.log("CSV PROCESSED");
-                //           });
-                //           console.log(csv);
-                //       });
-
-                //   }
-                // }
             })
 
             .then(function(data) {
-                console.log('storedistributor', data);
+                // console.log('storedistributor', data);
 
                 var csvArrayObject = {};
                 csvArrayObject.storedistributor = data;
@@ -330,14 +317,14 @@ var wrapper = {
                 getMarketWorkingConfig.json = {
 
                 };
-                getMarketWorkingConfig.json.startDate = req.query.startdate || "2018-03-14";
-                getMarketWorkingConfig.json.endDate = req.query.enddate || "2018-03-14";
+                getMarketWorkingConfig.json.startDate = req.query.startdate || date;
+                getMarketWorkingConfig.json.endDate = req.query.enddate || date;
                 return requestPromise(getMarketWorkingConfig);
 
             })
 
             .then(function(data) {
-                console.log('MarketWorking', data);
+                // console.log('MarketWorking', data);
 
                 var csvArrayObject = {};
                 csvArrayObject.MarketWorking = data;
@@ -353,12 +340,12 @@ var wrapper = {
                         jsonexport(csvArray[i][x].resonseObj, function(err, csv) {
                             if (err) return console.log(err);
 
-                            fs.writeFile('./csv/' + x + '-'+format.asString('yyyy-MM-dd',new Date())+'.csv', csv, function(err) {
+                            fs.writeFile('./csv/' + x + '-'+date+'.csv', csv, function(err) {
                                 if (err) throw err;
-                                console.log(csv);
+                                // console.log(csv);
                                 console.log("ALL CSV HAS BEEN PROCESSED");
                             });
-                            console.log(csv);
+                            // console.log(csv);
                         });
 
                     }
